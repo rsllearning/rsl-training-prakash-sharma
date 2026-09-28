@@ -60,5 +60,5 @@ a `@SpringBootTest` end-to-end CRUD flow. In IntelliJ: right-click `src/test/jav
 
 ## Screenshots
 
-See [`screenshots/`](screenshots/): startup (`01`), REST API calls (`02`–`06`),
-and the passing test suite (`07`).
+Screenshots of application startup, the REST API calls, and the passing test
+suite (58 tests) are attached to the pull request.
