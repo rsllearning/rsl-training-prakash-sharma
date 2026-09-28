@@ -1,0 +1,14 @@
+# ------------------------------------------------------------------
+# dev profile: local development.
+#  - sample data is seeded by config.DevDataInitializer (@Profile("dev"))
+#  - verbose logging for our packages
+#  - backdated requests allowed (handy for manual testing)
+# ------------------------------------------------------------------
+app:
+  leave:
+    allow-backdated-requests: true
+
+logging:
+  level:
+    com.rsl.leavemanagement: DEBUG
+    org.springframework.web: INFO

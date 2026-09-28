@@ -1,0 +1,16 @@
+# ------------------------------------------------------------------
+# prod profile: stricter rules, quieter logs, port from the environment.
+# Run with: java -jar target/leave-management-api-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod
+# ------------------------------------------------------------------
+server:
+  port: ${PORT:8080}
+
+app:
+  leave:
+    max-days-per-request: 20
+    allow-backdated-requests: false
+
+logging:
+  level:
+    root: WARN
+    com.rsl.leavemanagement: INFO

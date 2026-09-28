@@ -1,0 +1,25 @@
+# ------------------------------------------------------------------
+# Common configuration shared by every profile.
+# Profile-specific files (application-<profile>.yml) override these.
+# ------------------------------------------------------------------
+server:
+  port: 8080
+
+spring:
+  application:
+    name: leave-management-api
+  profiles:
+    # Used when no profile is set explicitly (e.g. --spring.profiles.active=prod overrides it).
+    default: dev
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false   # dates as "2026-10-05", not arrays
+
+app:
+  leave:
+    max-days-per-request: 30
+    allow-backdated-requests: false
+
+logging:
+  level:
+    root: INFO

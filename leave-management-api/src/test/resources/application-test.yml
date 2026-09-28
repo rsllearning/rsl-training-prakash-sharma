@@ -1,0 +1,15 @@
+# ------------------------------------------------------------------
+# test profile: used by @SpringBootTest tests via @ActiveProfiles("test").
+# No sample data is seeded, so tests start from an empty repository.
+# ------------------------------------------------------------------
+server:
+  port: 0
+
+app:
+  leave:
+    max-days-per-request: 30
+    allow-backdated-requests: false
+
+logging:
+  level:
+    root: WARN
