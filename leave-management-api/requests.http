@@ -1,0 +1,81 @@
+### Sample requests — open in IntelliJ (HTTP Client) and click ▶ next to each request.
+### Start the app first (dev profile seeds 3 leave requests with ids 1-3).
+
+### 1. Get all leave requests
+GET http://localhost:8080/leaves
+
+### 2. Filter by employee and status
+GET http://localhost:8080/leaves?employeeId=EMP001&status=PENDING
+
+### 3. Get one leave request
+GET http://localhost:8080/leaves/1
+
+### 4. Create a leave request (201 Created)
+POST http://localhost:8080/leaves
+Content-Type: application/json
+
+{
+  "employeeId": "EMP010",
+  "leaveType": "CASUAL",
+  "startDate": "2026-12-21",
+  "endDate": "2026-12-23",
+  "reason": "Attending sister's wedding"
+}
+
+### 5. Update (approve) a leave request (200 OK)
+PUT http://localhost:8080/leaves/1
+Content-Type: application/json
+
+{
+  "employeeId": "EMP001",
+  "leaveType": "CASUAL",
+  "startDate": "2026-12-01",
+  "endDate": "2026-12-02",
+  "reason": "Family function in hometown",
+  "status": "APPROVED"
+}
+
+### 6. Delete a leave request (204 No Content)
+DELETE http://localhost:8080/leaves/3
+
+### --- Error scenarios ---
+
+### 7. Not found (404)
+GET http://localhost:8080/leaves/999
+
+### 8. Validation errors (400)
+POST http://localhost:8080/leaves
+Content-Type: application/json
+
+{
+  "employeeId": "",
+  "leaveType": "CASUAL",
+  "startDate": "2026-12-10",
+  "endDate": "2026-12-05",
+  "reason": "abc"
+}
+
+### 9. Unknown leave type (400)
+POST http://localhost:8080/leaves
+Content-Type: application/json
+
+{
+  "employeeId": "EMP010",
+  "leaveType": "VACATION",
+  "startDate": "2026-12-10",
+  "endDate": "2026-12-11",
+  "reason": "Trip with friends"
+}
+
+### 10. Updating a finalized leave (409) — run after request 5
+PUT http://localhost:8080/leaves/1
+Content-Type: application/json
+
+{
+  "employeeId": "EMP001",
+  "leaveType": "CASUAL",
+  "startDate": "2026-12-01",
+  "endDate": "2026-12-02",
+  "reason": "Family function in hometown",
+  "status": "CANCELLED"
+}
