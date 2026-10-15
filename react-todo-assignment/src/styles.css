@@ -1,0 +1,85 @@
+:root {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #292d31;
+  background: #ffffff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 400;
+  --teal: #009bb0;
+  --border: #d6d8db;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 280px; }
+button, input { font: inherit; }
+button { cursor: pointer; }
+button, input { -webkit-tap-highlight-color: transparent; }
+button:focus-visible, input:focus-visible {
+  outline: 3px solid #0b657b;
+  outline-offset: 3px;
+}
+
+.todo-app { width: min(880px, calc(100% - 40px)); margin: 38px auto 64px; }
+h1, h2 { font-size: 28px; font-weight: 500; line-height: 1.25; text-align: center; margin: 0 0 20px; }
+.input-panel { border: 1px solid var(--border); border-radius: 4px; padding: 24px; }
+.input-group { display: flex; width: 100%; margin-bottom: 18px; }
+.input-icon { display: grid; place-items: center; flex: 0 0 44px; background: var(--teal); color: white; border-radius: 4px 0 0 4px; }
+.input-icon svg { width: 22px; height: 22px; }
+input[type="text"] { min-width: 0; width: 100%; height: 43px; padding: 10px 13px; border: 1px solid #cbd0d6; border-radius: 4px; color: #292d31; background: #fff; }
+.input-group input { border-radius: 0 4px 4px 0; }
+input::placeholder { color: #6d747b; opacity: 1; }
+.button { border: 1px solid transparent; border-radius: 4px; padding: 9px 13px; line-height: 1.25; min-height: 38px; transition: background-color 120ms ease; }
+.button-primary { color: #fff; background: var(--teal); }
+.button-primary:hover { background: #00869a; }
+.button-edit { background: silver; color: #111; }
+.button-edit:hover { background: #adadad; }
+.button-delete { background: #dc3545; color: #fff; }
+.button-delete:hover { background: #bb2433; }
+.add-button { width: 100%; min-height: 43px; }
+.list-section { margin-top: 22px; }
+.list-section h2 { margin-bottom: 16px; }
+.filters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; margin-bottom: 48px; }
+.filter-button { min-height: 43px; }
+.filter-button[aria-pressed="true"] { opacity: 0.6; }
+.todo-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+.todo-item { display: flex; align-items: center; gap: 20px; min-height: 60px; padding: 11px 20px; border: 1px solid var(--border); }
+.todo-description { flex: 1; min-width: 0; overflow-wrap: anywhere; white-space: pre-wrap; line-height: 1.6; }
+.is-completed .todo-description { color: #25833b; text-decoration: line-through; text-decoration-thickness: 1.5px; }
+.item-actions { display: flex; flex-shrink: 0; align-items: center; gap: 10px; }
+.todo-checkbox { width: 18px; height: 18px; margin: 0 8px 0 0; accent-color: #111; cursor: pointer; }
+.todo-checkbox:disabled { opacity: 1; cursor: default; }
+.edit-form { display: flex; align-items: center; gap: 16px; width: 100%; }
+.edit-form input { flex: 1; }
+.empty-message { color: #61676d; text-align: center; margin: 32px 0; padding: 22px 12px; border: 1px solid var(--border); }
+.storage-message { color: #7b5215; font-size: 14px; line-height: 1.6; margin-top: 24px; }
+.delete-dialog { width: min(430px, calc(100% - 32px)); max-height: 85dvh; border: 1px solid var(--border); border-radius: 6px; padding: 28px; color: #292d31; box-shadow: 0 14px 50px #0003; overflow-wrap: anywhere; }
+.delete-dialog::backdrop { background: #15252e70; }
+.delete-dialog h2 { font-size: 24px; text-align: left; margin-bottom: 12px; }
+.delete-dialog p { line-height: 1.5; }
+.dialog-task { max-height: 180px; overflow-y: auto; white-space: pre-wrap; background: #f5f6f7; border-left: 3px solid var(--teal); padding: 12px; }
+.dialog-actions { display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px; }
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+@media (max-width: 600px) {
+  .todo-app { width: calc(100% - 28px); margin-top: 24px; }
+  h1, h2 { font-size: 25px; }
+  .input-panel { padding: 16px; }
+  .filters { gap: 12px; margin-bottom: 28px; }
+  .todo-item { gap: 12px; padding: 10px 12px; }
+  .item-actions { gap: 6px; }
+  .todo-checkbox { margin-right: 3px; }
+  .button { padding: 9px 10px; font-size: 14px; }
+  .edit-form { gap: 8px; }
+}
+
+@media (max-width: 360px) {
+  .todo-item { gap: 8px; padding: 10px 8px; }
+  .item-actions { gap: 4px; }
+  .button { padding-inline: 7px; }
+  .edit-form { gap: 5px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button { transition: none; }
+}
