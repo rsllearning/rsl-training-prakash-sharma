@@ -1,0 +1,9 @@
+@echo off
+echo Starting React 19 Task 2 - Enhanced E-Commerce Storefront...
+if not exist "node_modules\" (
+    echo Installing dependencies...
+    call npm install
+)
+echo Launching development server...
+call npm run dev
+pause
