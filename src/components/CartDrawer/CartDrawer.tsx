@@ -1,7 +1,8 @@
 import React from 'react';
-import { useShallow } from 'zustand/react/shallow';
 import { useCartStore, selectTotalPrice } from '../../store/cartStore';
 import { CartItemsList } from './CartItemsList';
+import { CartErrorBanner } from './CartErrorBanner';
+import { CheckoutButton } from './CheckoutButton';
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -9,20 +10,10 @@ interface CartDrawerProps {
 }
 
 export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose }) => {
-  const { itemsCount, checkoutStatus, checkoutError, checkout } = useCartStore(
-    useShallow((state) => ({
-      itemsCount: state.items.length,
-      checkoutStatus: state.checkoutStatus,
-      checkoutError: state.checkoutError,
-      checkout: state.checkout,
-    }))
-  );
-
+  const itemsCount = useCartStore((state) => state.items.length);
   const totalPrice = useCartStore(selectTotalPrice);
 
   if (!isOpen) return null;
-
-  const isSubmitting = checkoutStatus === 'submitting';
 
   return (
     <div className="cart-drawer-overlay" onClick={onClose}>
@@ -35,10 +26,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose }) => {
         </div>
 
         <div className="drawer-content">
-          {checkoutError && <div className="alert-error">{checkoutError}</div>}
-          {checkoutStatus === 'success' && (
-            <div className="alert-success">Order placed successfully!</div>
-          )}
+          <CartErrorBanner />
           <CartItemsList />
         </div>
 
@@ -56,13 +44,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose }) => {
               <span>Total</span>
               <span>${totalPrice.toFixed(2)}</span>
             </div>
-            <button
-              className="btn-checkout"
-              onClick={checkout}
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? 'Processing Order...' : 'Proceed to Checkout'}
-            </button>
+            <CheckoutButton />
           </div>
         )}
       </div>
